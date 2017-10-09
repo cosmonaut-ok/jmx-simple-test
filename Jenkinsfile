@@ -1,4 +1,8 @@
-properties([parameters([choice(choices: ['integration', 'QA', 'staging', 'production'], description: 'Choose environment to perform tests', name: 'ENVIRONMENT')]), pipelineTriggers([])])
+def sendToChoices = ['alice@xy.com', 'bob@xy.com', 'somelist@xy.com'].join('\n')
+def userInput = input(message: 'Deploy this build to production?',
+		      ok: 'Yes deploy now!',
+		      parameters: [choice(choices: sendToChoices, name: 'SEND_EMAIL_TO')]
+		      )
 
 node('chef') {
     properties([parameters([choice(choices: ['integration', 'QA', 'staging', 'production'], description: 'Choose environment to perform tests', name: 'ENVIRONMENT')]), pipelineTriggers([])])
