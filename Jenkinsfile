@@ -1,3 +1,5 @@
+properties([parameters([choice(choices: ['integration', 'QA', 'staging', 'production'], description: 'Choose environment to perform tests', name: 'ENVIRONMENT')]), pipelineTriggers([])])
+
 node('chef') {
     properties([parameters([choice(choices: ['integration', 'QA', 'staging', 'production'], description: 'Choose environment to perform tests', name: 'ENVIRONMENT')]), pipelineTriggers([])])
     checkout scm
