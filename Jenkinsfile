@@ -6,9 +6,6 @@ node('chef') {
     			      ok: 'Deploy now!',
 			      parameters: [choice(choices: EnvironmentChoices, name: 'Environment')]
 			      )
-
-
-	if (env.BRANCH_NAME == 'master') {
 	    stage('Deploy') {
 		sh '/bin/bash ./apache-jmeter-3.1-TC/bin/jmeter.sh -n -t "./JMX_plans/Ingenico/Ingenico_${userInput}_AHUK.jmx" -l test.log -e -o report_AHUK_${userInput}'
 		    }
@@ -16,6 +13,5 @@ node('chef') {
 		perfReport 'report_AHUK_${userInput}'
 		    }
 
-	}
 }
 
